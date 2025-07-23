@@ -1,0 +1,31 @@
+/dist
+/node_modules
+
+#log
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+bun-debug.log*
+
+#env
+.env
+.env.local
+.env.development.local
+
+#os
+.DS_Store
+
+#ide - vscode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+#ide - cursor
+.cursor/*
+!.cursor/settings.json
+!.cursor/tasks.json
+!.cursor/launch.json
