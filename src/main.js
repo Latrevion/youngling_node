@@ -1,18 +1,49 @@
-const http = require("http");
+const express = require("express");
+const app = express();
+const port = 3000;
 
-const server = http.createServer((req, res) => {
-  const data = {
-    id:1,
-     title:'hello world',
-     description:'this is a description'
-  }
-  const jsonData = JSON.stringify(data)
+app.listen(port, () => {
+  console.log("This server is start");
+});
+
+app.get("/", (req, res) => {
+  res.send("hello ");
+});
+
+const data = [
+  {
+    id: 1,
+    title: "hello world1",
+    description: "this is a description",
+  },
+  {
+    id: 2,
+    title: "hello world2",
+    description: "this is a description",
+  },
+  {
+    id: 3,
+    title: "hello world3",
+    description: "this is a description",
+  },
+  {
+    id: 4,
+    title: "hello world4",
+    description: "this is a description",
+  },
+];
+
+app.get('/posts', (req, res) => {
+  res.send(data);
+});
+
+app.get('/posts/:postId',(req,res)=>{
+  //fetch id
+  const {postId} = req.params;
   
-  res.writeHead(200,{'content-type':'application/json;charset=utf-8'})
-
-  res.end(JSON.stringify(data));
-});
-
-server.listen(3000, () => {
-  console.log("server is running on port 3000");
-});
+  //find post 
+  const posts =data.filter((post)=>post.id == postId);
+  
+  //send post
+  res.send(posts[0])
+})
