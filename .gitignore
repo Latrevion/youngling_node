@@ -29,3 +29,6 @@ bun-debug.log*
 !.cursor/settings.json
 !.cursor/tasks.json
 !.cursor/launch.json
+/.idea/jsLibraryMappings.xml
+/.idea/vcs.xml
+/.idea/workspace.xml
