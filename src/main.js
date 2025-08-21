@@ -2,6 +2,13 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+
+/**
+ * use json middle Middleware
+ */
+app.use(express.json());
+
+
 app.listen(port, () => {
   console.log("This server is start");
 });
@@ -42,8 +49,27 @@ app.get('/posts/:postId',(req,res)=>{
   const {postId} = req.params;
   
   //find post 
-  const posts =data.filter((post)=>post.id == postId);
+  const posts =data.filter((post)=>post.id === postId);
   
   //send post
   res.send(posts[0])
 })
+
+
+/**
+ * create posts
+ */
+app.post('/posts', (req, res) => {
+    //Get the data in the request
+    const {content} = req.body;
+
+    //set res status
+    res.status(201)
+
+    console.log(req.headers['sing-along'])
+
+    //Respond
+    res.send({
+        message:`create successfully ${content}`,
+    })
+});
