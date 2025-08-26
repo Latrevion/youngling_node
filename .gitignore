@@ -24,6 +24,9 @@ bun-debug.log*
 !.vscode/launch.json
 !.vscode/extensions.json
 
+#ide - webstorm
+.idea
+
 #ide - cursor
 .cursor/*
 !.cursor/settings.json
