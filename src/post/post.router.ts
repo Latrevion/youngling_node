@@ -1,0 +1,15 @@
+import  express from "express";
+import * as postController from '../post/post.controller'
+import {requestUrl} from '../app/app.middleware';
+
+const router:express.Router = express.Router();
+
+/**
+ * post list
+ */
+router.get('/posts',requestUrl,postController.index);
+
+/**
+ * export router
+ */
+export default router;
