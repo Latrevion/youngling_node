@@ -9,6 +9,12 @@ const router:express.Router = express.Router();
  */
 router.get('/posts',requestUrl,postController.index);
 
+
+/**
+ * create post
+ */
+router.post('/posts',postController.store);
+
 /**
  * export router
  */

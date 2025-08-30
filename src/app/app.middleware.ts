@@ -1,29 +1,42 @@
-import {Request,Response,NextFunction} from 'express';
+import { Request, Response, NextFunction } from 'express';
 
 /**
  * log url
  */
-export const requestUrl = (request:Request,respose:Response,next:NextFunction)=>{
+export const requestUrl = (
+  request: Request,
+  respose: Response,
+  next: NextFunction,
+) => {
   console.log(request.url);
   next();
-}
+};
 
 /**
  * default error handler
  */
-export const defaultErrorHandler=(error:any,request:Request,response:Response,next:NextFunction)=>{
-  let statusCode :number
-  let message:string
+export const defaultErrorHandler = (
+  error: any,
+  request: Request,
+  response: Response,
+  next: NextFunction,
+) => {
+
+  if(error.message){
+    console.log('error', error.message);
+  }
+
+  let statusCode: number;
+  let message: string;
 
   /**
    * handle an error
    */
-  switch (error.message){
+  switch (error.message) {
     default:
       statusCode = 500;
       message = 'Something went wrong';
       break;
   }
-  response.status(statusCode).send({message})
-
-}
+  response.status(statusCode).send({ message });
+};

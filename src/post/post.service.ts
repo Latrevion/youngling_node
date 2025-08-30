@@ -1,12 +1,40 @@
+import { connection } from '../app/database/mysql';
+import { PostModel } from './post.model';
+import { ResultSetHeader } from 'mysql2';
+
+export interface Post {
+  id: number;
+  title: string;
+  content: string;
+  userId: number;
+}
+
 /**
  * Get a list of contents
  */
-export const getPostList=()=>{
-  const data = [
-    { content: "Code is like humor. When you have to explain it, it's bad" },
-    { content: 'First, solve the problem. Then, write the code.' },
-    { content: 'Simplicity is the ultimate sophistication.' },
-    { content: 'Clean code always looks like it was written by someone who cares' },
-  ];
+export const getPostList = async (): Promise<Post[]> => {
+  const statement = `SELECT post.id, post.title, post.content, JSON_OBJECT('id', user.id, 'name', user.name) as user
+                     FROM post LEFT JOIN user
+                     on user.id = post.userId`;
+
+  const [data] = await connection.promise().query(statement);
+
+  return data as Post[];
+};
+
+/**
+ * create post
+ */
+export const createPost = async (post: PostModel): Promise<ResultSetHeader> => {
+  // Prepare for inquiries
+  const statement = `
+  INSERT INTO post 
+  SET ?
+  `;
+
+  //execution query
+  const [data] = await connection.promise().query<ResultSetHeader>(statement, post);
+
+  //Provide data
   return data;
-}
+};
