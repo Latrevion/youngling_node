@@ -29,3 +29,5 @@ bun-debug.log*
 !.cursor/settings.json
 !.cursor/tasks.json
 !.cursor/launch.json
+
+.idea/*
