@@ -57,3 +57,20 @@ export const updatePost = async (postId: number, post: PostModel):Promise<OkPack
   //provide data
   return data;
 };
+
+
+/**
+ * delete post
+ */
+export const deletePost = async(postId:number):Promise<OkPacket> => {
+  //Ready to query the database
+  const statement = `DELETE FROM post WHERE id = ?`;
+
+  //Execute query
+  const [data] = await  connection.promise().query(statement,[postId]) as OkPacket[];
+
+  //provide data
+  return  data;
+
+}
+
