@@ -16,6 +16,11 @@ router.get('/posts',requestUrl,postController.index);
 router.post('/posts',postController.store);
 
 /**
+ * update post
+ */
+router.patch('/posts/:postId',postController.update)
+
+/**
  * export router
  */
 export default router;

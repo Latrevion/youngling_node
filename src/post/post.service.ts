@@ -1,6 +1,6 @@
 import { connection } from '../app/database/mysql';
 import { PostModel } from './post.model';
-import { ResultSetHeader } from 'mysql2';
+import { OkPacket, ResultSetHeader } from 'mysql2';
 
 export interface Post {
   id: number;
@@ -33,8 +33,27 @@ export const createPost = async (post: PostModel): Promise<ResultSetHeader> => {
   `;
 
   //execution query
-  const [data] = await connection.promise().query<ResultSetHeader>(statement, post);
+  const [data] = await connection
+    .promise()
+    .query<ResultSetHeader>(statement, post);
 
   //Provide data
+  return data;
+};
+
+/**
+ * update post
+ */
+export const updatePost = async (postId: number, post: PostModel):Promise<OkPacket> => {
+  //Ready to query the database
+  const statement = `UPDATE post
+                     SET ?
+                     WHERE id = ?`;
+
+  //Execute query
+  const [data] = await connection.promise().query(statement,[post,postId]) as OkPacket[];
+
+
+  //provide data
   return data;
 };

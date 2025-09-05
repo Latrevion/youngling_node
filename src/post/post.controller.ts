@@ -1,5 +1,6 @@
 import {Request,Response,NextFunction} from 'express';
-import { getPostList,createPost } from './post.service';
+import { getPostList,createPost, updatePost } from './post.service';
+import _ from 'lodash';
 
 /**
  * posts list
@@ -28,4 +29,24 @@ export const store= async (request:Request,response:Response,next:NextFunction)=
     next(err);
   }
 
+}
+
+/**
+ * update post
+ */
+
+export const update = async (request:Request,response:Response,next:NextFunction)=>{
+//Get the post-ID
+  const {postId} =request.params;
+
+  //Get the data
+   const post = _.pick(request.body,['title','content']);
+
+  //update
+  try{
+    const data = await updatePost(parseInt(postId,10),post);
+    response.send(data);
+  }catch (e) {
+    next(e);
+  }
 }
