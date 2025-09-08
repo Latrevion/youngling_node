@@ -45,6 +45,10 @@ export const defaultErrorHandler = (
       statusCode=409;
       message = "user name already exists";
       break;
+    case "user does not exists":
+      statusCode=400;
+      message = "user does not exists";
+      break;
     default:
       statusCode = 500;
       message = 'Something went wrong';
