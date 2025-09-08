@@ -1,5 +1,6 @@
 import {Request,Response,NextFunction} from 'express';
 import * as userService from './user.service';
+import bcrypt from 'bcrypt';
 
 
 /**
@@ -19,5 +20,19 @@ export const validateUserData = async (req: Request, res: Response, next: NextFu
   const user =await userService.getUserByName(name);
   if(user)return next(new Error('user already exists'));
 
+  next();
+}
+
+/**
+ * hash password
+ */
+export const hashPassword = async (req: Request, res: Response, next: NextFunction) => {
+  //prepare data
+  const {password} = req.body;
+
+  //hash password
+  req.body.password=await bcrypt.hash(password, 10);
+
+  //next
   next();
 }
