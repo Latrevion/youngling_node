@@ -41,6 +41,10 @@ export const defaultErrorHandler = (
       statusCode=400;
       message = "Password is required";
       break;
+    case 'user already exists':
+      statusCode=409;
+      message = "user name already exists";
+      break;
     default:
       statusCode = 500;
       message = 'Something went wrong';
