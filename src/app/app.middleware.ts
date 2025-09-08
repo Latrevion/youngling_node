@@ -33,6 +33,14 @@ export const defaultErrorHandler = (
    * handle an error
    */
   switch (error.message) {
+    case "name required":
+      statusCode=400;
+      message = "Name is required";
+      break;
+    case "password required":
+      statusCode=400;
+      message = "Password is required";
+      break;
     default:
       statusCode = 500;
       message = 'Something went wrong';
