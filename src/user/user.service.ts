@@ -30,10 +30,17 @@ export interface User extends RowDataPacket {
 /**
  * Find user by username
  */
-export  const getUserByName = async (name:string): Promise< User|null> => {
+interface GetUserOptions{
+  password?:boolean
+}
+
+export  const getUserByName = async (name:string,options:GetUserOptions={}): Promise< User|null> => {
+  const {password} = options;
+
+
   // //Prepare for a query
   const statement = `
-  SELECT id, name
+  SELECT id, name ${password?',password':''}
   FROM user
   WHERE name = ?
   `;

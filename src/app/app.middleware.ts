@@ -49,6 +49,10 @@ export const defaultErrorHandler = (
       statusCode=400;
       message = "user does not exists";
       break;
+    case "password not match":
+      statusCode=400;
+      message = "password not match";
+      break;
     default:
       statusCode = 500;
       message = 'Something went wrong';
