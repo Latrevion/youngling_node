@@ -17,6 +17,8 @@ bun-debug.log*
 #os
 .DS_Store
 
+/config
+
 #ide - vscode
 .vscode/*
 !.vscode/settings.json
