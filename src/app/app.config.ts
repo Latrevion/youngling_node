@@ -18,3 +18,14 @@ export const {
   MYSQL_PASSWORD,
   MYSQL_DATABASE,
 }=process.env
+
+
+/**
+ * Key configuration
+ */
+export let { PUBLIC_KEY, PRIVATE_KEY } = process.env;
+// @ts-ignore
+PUBLIC_KEY = Buffer.from(PUBLIC_KEY, 'base64').toString();
+// @ts-ignore
+PRIVATE_KEY=Buffer.from(PRIVATE_KEY,'base64').toString();
+
