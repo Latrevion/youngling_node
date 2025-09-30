@@ -32,10 +32,12 @@ export const store = async (
   next: NextFunction,
 ) => {
   const { title, content } = request.body;
+  const {id:userId} = request.user;
 
   //create post
   try {
-    const data = await createPost({ title, content });
+    // @ts-ignore
+    const data = await createPost({ title, content ,userId});
     response.status(201).send(data);
   } catch (err) {
     next(err);

@@ -5,7 +5,7 @@ import { Request, Response, NextFunction } from 'express';
  */
 export const requestUrl = (
   request: Request,
-  respose: Response,
+  response: Response,
   next: NextFunction,
 ) => {
   console.log(request.url);
@@ -52,6 +52,10 @@ export const defaultErrorHandler = (
     case "password not match":
       statusCode=400;
       message = "password not match";
+      break;
+    case 'un_authorized':
+      statusCode=401;
+      message = "please login";
       break;
     default:
       statusCode = 500;
